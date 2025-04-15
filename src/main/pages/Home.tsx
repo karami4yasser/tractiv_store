@@ -10,6 +10,7 @@ import BuyNowOptions from "../components/Home/BuyNowOptions";
 import Testimonials from "../components/Home/Testimonials";
 import ShopNow from "../components/Home/ShopNow";
 import Faq from "../components/Home/Faq";
+import Footer from "../components/Home/Footer";
 function Home() {
   return (
     <div
@@ -29,6 +30,7 @@ function Home() {
       <Testimonials />
       <ShopNow />
       <Faq />
+      <Footer />
     </div>
   );
 }

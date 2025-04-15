@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -9,14 +9,66 @@ import Test3 from "../../../assets/Test3.png";
 import Test4 from "../../../assets/Test4.png";
 import device1 from "../../../assets/device1.png";
 import device2 from "../../../assets/device2.png";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 function Faq() {
+  const [expandedPanels, setExpandedPanels] = useState<Record<string, boolean>>(
+    {}
+  );
+
+  const handleToggle = (panel: string) => () => {
+    setExpandedPanels((prev) => ({
+      ...prev,
+      [panel]: !prev[panel],
+    }));
+  };
+
+  const faqs = [
+    {
+      id: "panel1",
+      question: "How does Tractive work?",
+      answer:
+        "The Tractive GPS tracker determines its location using GPS satellites and reports it via cellular networks (LTE)...",
+    },
+    {
+      id: "panel2",
+      question: "Does Tractive work worldwide?",
+      answer:
+        "Yes! Tractive works in over 175 countries. With a subscription plan, your tracker will automatically connect to local mobile networks with no extra charges.",
+    },
+    {
+      id: "panel3",
+      question: "Do I need a subscription?",
+      answer:
+        "Yes. The subscription covers all mobile data so you can track your pet in real-time using the Tractive app — no additional fees, no contracts.",
+    },
+    {
+      id: "panel4",
+      question: "Is the tracker waterproof?",
+      answer:
+        "Absolutely. Tractive GPS trackers are 100% waterproof and adventure-proof — made to handle everything from rainy walks to swims in the lake.",
+    },
+    {
+      id: "panel5",
+      question: "How long does the battery last?",
+      answer:
+        "Depending on your usage and settings, the battery typically lasts from 3 up to 10 days on a full charge. You can always monitor the battery level in the app.",
+    },
+  ];
+
   return (
     <Wrapper>
       <div
         style={{
           display: "flex",
-          gridTemplateColumns: "column",
+          flexDirection: "row",
           padding: "7.5rem 0",
+          gap: "7rem",
         }}
       >
         <div
@@ -24,6 +76,7 @@ function Faq() {
             display: "flex",
             flexDirection: "column",
             padding: "0 7.5rem",
+            width: "27rem",
           }}
         >
           <Overview style={{}}>Frequently Asked Questions</Overview>
@@ -36,7 +89,65 @@ function Faq() {
               gap: "35%",
             }}
           >
-            <Title>What pet parents have to say</Title>
+            <Title>Looking for answers? You've come to the right place.</Title>
+          </div>
+        </div>
+
+        <div
+          style={{
+            flex: 1,
+          }}
+        >
+          <div
+            style={{
+              flexDirection: "column",
+              display: "flex",
+              marginRight: "5rem",
+
+              border: "2px solid white",
+              borderRadius: "16px",
+              boxShadow: "0 4px 16px white", // 👈 soft shadow
+            }}
+          >
+            {faqs.map((faq) => (
+              <Accordion
+                key={faq.id}
+                expanded={expandedPanels[faq.id] || false}
+                onChange={handleToggle(faq.id)}
+                style={{
+                  marginBottom: 0,
+                  marginTop: 0,
+                  background: "#f0f7ff",
+                }}
+              >
+                <AccordionSummary
+                  style={{
+                    padding: "10px 20px",
+                    borderBottom: "1px solid #e3e4ea",
+                    marginBottom: 0,
+                  }}
+                  expandIcon={
+                    <ExpandMoreIcon
+                      style={{
+                        color:
+                          "light-dark(rgb(118, 118, 118), rgb(133, 133, 133))",
+                      }}
+                    />
+                  }
+                  aria-controls={`${faq.id}-content`}
+                  id={`${faq.id}-header`}
+                >
+                  <AccordionText>{faq.question}</AccordionText>
+                </AccordionSummary>
+                <AccordionDetails
+                  style={{
+                    marginBottom: 0,
+                  }}
+                >
+                  <AccordionContent>{faq.answer}</AccordionContent>
+                </AccordionDetails>
+              </Accordion>
+            ))}
           </div>
         </div>
       </div>
@@ -51,6 +162,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   background: #fcf8f3;
+  height: 550px;
 `;
 const Overview = styled.div`
   justify-self: start;
@@ -68,37 +180,22 @@ const Overview = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 3rem;
-  line-height: 3.5rm;
+  font-size: 2rem;
+  line-height: 2.5rm;
   font-weight: 600;
 `;
 
-const CarouselControles = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-`;
-const CarouselControle = styled.button`
-  border: none;
-  background: transparent;
-  cursor: pointer;
+const AccordionText = styled.div`
+  font-family: Poppins, sans-serif;
+  font-weight: bold;
+  color: #121623;
+  font-size: 1.17em;
 `;
 
-const ScrollWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  gap: 1rem;
-
-  /* Optional: hide scrollbar */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
-  }
-
-  padding-left: 5rem;
-  padding-right: 5rem;
-
-  padding-top: 4rem;
+const AccordionContent = styled.p`
+  font-family: Poppins, sans-serif;
+  color: #5c606e;
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  font-size: 0.9em;
 `;
