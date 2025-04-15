@@ -1,0 +1,150 @@
+import React from "react";
+import styled from "styled-components";
+import cat from "../../../assets/buyNowCat.png";
+import dog from "../../../assets/buyNowDog.png";
+function ShopNow() {
+  return (
+    <Container>
+      <ContainerContent>
+        <CardItem>
+          <ImageCard>
+            <img src={dog} alt="Dog in a field"></img>
+            <div
+              style={{
+                zIndex: 10,
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <ImageCardHeadline>Dog Tracker</ImageCardHeadline>
+              <ImageCardButton>Shop Now</ImageCardButton>
+            </div>
+          </ImageCard>
+        </CardItem>
+        <CardItem>
+          <ImageCard>
+            {" "}
+            <img src={cat} alt="Dog in a field"></img>
+            <div
+              style={{
+                zIndex: 10,
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <ImageCardHeadline>Cat Tracker</ImageCardHeadline>
+              <ImageCardButton>Shop Now</ImageCardButton>
+            </div>
+          </ImageCard>
+        </CardItem>
+      </ContainerContent>
+    </Container>
+  );
+}
+
+export default ShopNow;
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 32px 32px 0px 0px;
+  min-height: 420px;
+  gap: 21px;
+  width: 100%;
+  padding: 5rem 0;
+`;
+
+const ContainerContent = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-gap: 5rem;
+  padding: 0 5rem;
+`;
+
+const CardItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const ImageCard = styled.div`
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1.6;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0.75rem;
+    transition: transform 0.4s ease-in-out;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(38, 38, 38, 0) 50%,
+      rgba(38, 38, 38, 0.6) 100%
+    );
+    background-blend-mode: multiply;
+    z-index: 2;
+  }
+
+  > div {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+  }
+`;
+
+const ImageCardHeadline = styled.div`
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+`;
+
+const ImageCardButton = styled.div`
+  touch-action: manipulation;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 7.5rem;
+  height: 3rem;
+  padding: 0.75rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+
+  border: none;
+  border-radius: 9999px;
+  transition: background 300ms ease-out, border 300ms ease-out;
+
+  &:hover {
+    border: 1px solid #1a73e8;
+    background: rgba(26, 115, 232, 0.8);
+    color: #fff;
+  }
+
+  color: #1a73e8;
+  background: #fff;
+`;
