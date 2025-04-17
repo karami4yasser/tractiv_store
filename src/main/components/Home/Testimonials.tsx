@@ -19,23 +19,9 @@ function Testimonials() {
           padding: "7.5rem 0",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            padding: "0 7.5rem",
-          }}
-        >
+        <TopSection style={{}}>
           <Overview style={{}}>Testimonials</Overview>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              width: "100%",
-
-              gap: "35%",
-            }}
-          >
+          <TopSectionInside style={{}}>
             <Title>What pet parents have to say</Title>
             <CarouselControles>
               <CarouselControle>
@@ -58,8 +44,8 @@ function Testimonials() {
                 />
               </CarouselControle>
             </CarouselControles>
-          </div>
-        </div>
+          </TopSectionInside>
+        </TopSection>
 
         <ScrollWrapper>
           {[
@@ -103,10 +89,39 @@ const Overview = styled.div`
   line-height: 1.5rm;
 `;
 
+const TopSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 7.5rem;
+
+  @media (max-width: 1268px) {
+    padding: 0 0.5rem;
+  }
+`;
+
+const TopSectionInside = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 0 7.5rem;
+
+  width: "100%";
+
+  gap: "35%";
+
+  @media (max-width: 1268px) {
+    padding: 0 0.5rem;
+    flex-direction: column;
+  }
+`;
+
 const Title = styled.div`
   font-size: 3rem;
   line-height: 3.5rm;
   font-weight: 600;
+
+  @media (max-width: 1268px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const CarouselControles = styled.div`
@@ -137,4 +152,9 @@ const ScrollWrapper = styled.div`
   padding-right: 5rem;
 
   padding-top: 4rem;
+
+  @media (max-width: 1268px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 `;

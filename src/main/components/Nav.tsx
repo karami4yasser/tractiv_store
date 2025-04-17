@@ -1,35 +1,85 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "./Logo";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import styled from "styled-components";
+
 function Nav() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <Banner>
         <BannerText>Spring Sale: 30% off all pet GPS trackers</BannerText>
       </Banner>
+
       <Header>
-        {/* Logo */}
         <HeaderLogo>
-          <Logo />
+          <a
+            style={{
+              textDecoration: "none",
+              margin: 0,
+              padding: 0,
+            }}
+            href="/"
+          >
+            <Logo />
+          </a>
         </HeaderLogo>
 
-        {/* bar */}
+        {/* Hamburger for mobile */}
+        <Hamburger onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
+        </Hamburger>
 
-        <BarNavigations>
-          <ButtonNavigation>Tractive for Dogs</ButtonNavigation>
-          <ButtonNavigation>Tractive for Cats</ButtonNavigation>
-          <ButtonNavigation>Pricing</ButtonNavigation>
-          <ButtonNavigation>Blog</ButtonNavigation>
-          <ButtonNavigation>Support</ButtonNavigation>
+        {/* Nav buttons (desktop + mobile toggle) */}
+        <BarNavigations $open={mobileMenuOpen}>
+          <a
+            style={{
+              textDecoration: "none",
+            }}
+            href="/gps-tracker-dog"
+          >
+            <ButtonNavigation>Tractive for Dogs</ButtonNavigation>
+          </a>
+
+          <a
+            style={{
+              textDecoration: "none",
+            }}
+            href="/gps-tracker-cat"
+          >
+            <ButtonNavigation>Tractive for Cats</ButtonNavigation>
+          </a>
+
+          <a
+            style={{
+              textDecoration: "none",
+            }}
+            href="/pricing"
+          >
+            <ButtonNavigation>Pricing</ButtonNavigation>
+          </a>
+
+          <a
+            style={{
+              textDecoration: "none",
+            }}
+            href="/blog"
+          >
+            <ButtonNavigation>Blog</ButtonNavigation>
+          </a>
+          <a
+            style={{
+              textDecoration: "none",
+            }}
+            href="/support"
+          >
+            <ButtonNavigation>Support</ButtonNavigation>
+          </a>
         </BarNavigations>
 
-        {/* store logo */}
         <div>
           <AddShoppingCartIcon />
         </div>
@@ -39,13 +89,12 @@ function Nav() {
 }
 
 export default Nav;
+
 const Banner = styled.div`
   display: flex;
-  flex-wrap: nowrap;
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  overflow: hidden;
   background: #7c64af;
 `;
 
@@ -60,33 +109,62 @@ const Header = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-content: center;
   align-items: center;
   padding: 24px 48px;
+  position: relative;
+
+  @media (max-width: 1268px) {
+    padding: 16px;
+  }
 `;
+
 const HeaderLogo = styled.div`
   display: flex;
 `;
 
-const BarNavigations = styled.div`
+// NEW: Hamburger style (hidden on desktop)
+const Hamburger = styled.div`
+  display: none;
+  cursor: pointer;
+  z-index: 999;
+
+  @media (max-width: 1268px) {
+    display: block;
+  }
+`;
+
+const BarNavigations = styled.div<{ $open: boolean }>`
   display: flex;
   flex-direction: row;
   gap: 16px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 16px;
+    display: ${({ $open }) => ($open ? "flex" : "none")};
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 998;
+  }
 `;
+
 const ButtonNavigation = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   background: transparent;
   border: none;
   padding: 8px 24px;
   border-radius: 16px;
   cursor: pointer;
-  height: fit;
   transition: background 300ms ease-out;
+  font-weight: 700;
+  color: #121623;
 
   &:hover {
     background: rgba(26, 115, 232, 0.2);
   }
-  font-weight: 700;
 `;

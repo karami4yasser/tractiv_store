@@ -63,22 +63,8 @@ function Faq() {
 
   return (
     <Wrapper>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          padding: "7.5rem 0",
-          gap: "7rem",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            padding: "0 7.5rem",
-            width: "27rem",
-          }}
-        >
+      <Container>
+        <ContainerLeft style={{}}>
           <Overview style={{}}>Frequently Asked Questions</Overview>
           <div
             style={{
@@ -91,24 +77,14 @@ function Faq() {
           >
             <Title>Looking for answers? You've come to the right place.</Title>
           </div>
-        </div>
+        </ContainerLeft>
 
         <div
           style={{
             flex: 1,
           }}
         >
-          <div
-            style={{
-              flexDirection: "column",
-              display: "flex",
-              marginRight: "5rem",
-
-              border: "2px solid white",
-              borderRadius: "16px",
-              boxShadow: "0 4px 16px white", // 👈 soft shadow
-            }}
-          >
+          <ContainerRight style={{}}>
             {faqs.map((faq) => (
               <Accordion
                 key={faq.id}
@@ -148,9 +124,9 @@ function Faq() {
                 </AccordionDetails>
               </Accordion>
             ))}
-          </div>
+          </ContainerRight>
         </div>
-      </div>
+      </Container>
     </Wrapper>
   );
 }
@@ -163,7 +139,50 @@ const Wrapper = styled.div`
   flex-direction: column;
   background: #fcf8f3;
   height: 550px;
+  @media (max-width: 1268px) {
+    height: fit-content;
+  }
 `;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 7.5rem 0;
+  gap: 7rem;
+
+  @media (max-width: 1268px) {
+    flex-direction: column;
+  }
+`;
+
+const ContainerLeft = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 7.5rem;
+  width: 27rem;
+
+  @media (max-width: 1268px) {
+    width: fit-content;
+    padding: 0 0rem;
+    padding-left: 24px;
+  }
+`;
+
+const ContainerRight = styled.div`
+  flex-direction: column;
+  display: flex;
+  margin-right: 5rem;
+
+  border: 2px solid white;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px white;
+
+  @media (max-width: 1268px) {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+`;
+
 const Overview = styled.div`
   justify-self: start;
 
@@ -183,6 +202,14 @@ const Title = styled.div`
   font-size: 2rem;
   line-height: 2.5rm;
   font-weight: 600;
+
+  @media (max-width: 1268px) {
+    font-size: 1.5rem;
+    line-height: 2rm;
+    font-weight: 600;
+
+    width: 90%;
+  }
 `;
 
 const AccordionText = styled.div`

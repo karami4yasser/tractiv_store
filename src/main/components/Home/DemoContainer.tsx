@@ -53,31 +53,21 @@ function DemoContainer() {
             flexDirection: "column",
             paddingTop: "200px",
             minHeight: "610px",
-            width: "100%",
 
             alignContent: "center",
-
-            paddingRight: 25,
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-            }}
-          >
+          <RigtSide style={{}}>
             <h1> Easy to use and intuitive</h1>
             <h2
               style={{
                 marginTop: -5,
               }}
             >
-              {" "}
               That's what customers love about the Tractive GPS app.
             </h2>
             <Hero_Button>Get Your Tracker</Hero_Button>
-          </div>
+          </RigtSide>
         </Content>
       </Container>
 
@@ -111,11 +101,18 @@ const ContainerDemo = styled.div`
   align-content: center;
 
   border-radius: 0px 0px 32px 32px;
+
+  @media (max-width: 1268px) {
+    border-radius: 0px;
+    padding: 0;
+    min-height: 220px;
+  }
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
+
   justify-content: space-between;
   border-radius: 32px 32px 0px 0px;
   min-height: 420px;
@@ -123,12 +120,35 @@ const Container = styled.div`
   gap: 21px;
 
   width: 100%;
+
+  @media (max-width: 1268px) {
+    flex-direction: column;
+  }
+`;
+
+const RigtSide = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  @media (max-width: 1268px) {
+    flex-direction: column;
+
+    align-items: center;
+    text-align: center;
+    align-content: center;
+  }
 `;
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-content: center;
   align-items: center;
+
+  @media (max-width: 1268px) {
+    align-text: center;
+  }
 
   h1 {
     color: white;
@@ -179,6 +199,9 @@ const Hero_Button = styled.div`
   align-items: center;
   justify-content: center;
   min-width: 7.5rem;
+  @media (max-width: 1268px) {
+    min-width: fit-content;
+  }
   height: 2rem;
   padding: 0.75rem 2.5rem;
   font-size: 1rem;
@@ -210,6 +233,11 @@ const NormalVideoContainer = styled.div`
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
   position: absolute;
   bottom: -250px;
+
+  @media (max-width: 1268px) {
+    bottom: 0px;
+    border-radius: 0px;
+  }
 `;
 
 const StyledVideo = styled.video`

@@ -7,7 +7,7 @@ function NewProduct() {
       <Container>
         <div
           style={{
-            width: "50%",
+            width: "70%",
 
             display: "flex",
             flexDirection: "column",
@@ -33,6 +33,9 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+
+  @media (max-width: 1268px) {
+  }
 `;
 
 const Container = styled.div`
@@ -42,7 +45,12 @@ const Container = styled.div`
   margin-top: 110px;
   border-radius: 32px;
   min-height: 400px;
-  width: 80%;
+  @media (max-width: 1268px) {
+    min-height: 200px;
+    margin-top: 0px;
+    border-radius: 0px;
+  }
+
   background: red;
   position: relative;
   background-image: url(${newProduct});
@@ -51,6 +59,10 @@ const Container = styled.div`
   background-repeat: no-repeat;
 
   padding: 52px 45px;
+
+  @media (max-width: 1268px) {
+    padding: 52px 15px;
+  }
 
   h1 {
     color: #121623;
@@ -90,10 +102,16 @@ const Hero_Button = styled.div`
   align-items: center;
   justify-content: center;
   min-width: 7.5rem;
+  @media (max-width: 1268px) {
+    min-width: fit-content;
+  }
   height: 2rem;
   padding: 0.75rem 2.5rem;
+
+  @media (max-width: 1268px) {
+    padding: 0.75rem 1.5rem;
+  }
   font-size: 1rem;
-  width: fit-content;
 
   line-height: 1.5rem;
   color: #fff;

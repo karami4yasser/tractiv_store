@@ -14,14 +14,7 @@ function BuyNowOptions() {
   return (
     <Wrapper>
       {" "}
-      <div
-        style={{
-          height: "400px",
-
-          zIndex: -1,
-          width: "100%",
-        }}
-      ></div>
+      <Empty style={{}}></Empty>
       <Title>
         Designed for comfort. <span>Built for safety.</span>
       </Title>
@@ -170,10 +163,25 @@ const Wrapper = styled.div`
   flex-direction: column;
   padding: 0px 0 100px 0;
 
+  @media (max-width: 1268px) {
+    padding: 0px 0 400px 0;
+  }
+
   align-items: center;
   align-content: center;
 
   min-height: 600px;
+`;
+
+const Empty = styled.div`
+  height: 400px;
+
+  z-index: -1;
+  width: "100%";
+
+  @media (max-width: 1268px) {
+    display: none;
+  }
 `;
 
 const Title = styled.h1`
@@ -182,6 +190,10 @@ const Title = styled.h1`
   font-size: 600;
   span {
     color: #1a73e8;
+  }
+
+  @media (max-width: 1268px) {
+    text-align: center;
   }
 `;
 
@@ -203,6 +215,9 @@ const SwitcherOption = styled.button<SwitcherOptionProps>`
   justify-content: center;
   align-items: center;
   width: 50%;
+  @media (max-width: 1268px) {
+    width: 100%;
+  }
   border-radius: 9999px;
   border: none;
   cursor: pointer;
@@ -223,9 +238,16 @@ const SwitcherOption = styled.button<SwitcherOptionProps>`
 const DeviceContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
+
   margin-top: 48px;
   gap: 24px;
+
+  @media (max-width: 1268px) {
+    flex-direction: column;
+
+    padding: 0 24px;
+    align-items: center;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -288,8 +310,14 @@ const PricingContainer = styled.div`
   display: flex;
   flex-direction: row;
 
+  @media (max-width: 1268px) {
+    flex-direction: column;
+
+    padding: 0 24px;
+    align-items: center;
+  }
+
   align-items: center;
-  width: 100%;
 `;
 
 const PricingLeft = styled.div`
@@ -298,12 +326,25 @@ const PricingLeft = styled.div`
 
   align-items: flex-end;
   width: 50%;
+
+  @media (max-width: 1268px) {
+    width: 100%;
+    align-items: center;
+  }
 `;
 
 const PricingLeftContent = styled.div`
   display: flex;
   flex-direction: column;
+
   padding: 0px 120px;
+  @media (max-width: 1268px) {
+    flex-direction: row;
+    padding: 0px 48px;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+  }
 
   h1 {
     font-weight: 600;
@@ -324,6 +365,11 @@ const PricingRight = styled.div`
   align-items: center;
   justify-content: center;
   width: 50%;
+  @media (max-width: 1268px) {
+    width: 100%;
+
+    align-content: center;
+  }
 `;
 
 const PricingRightContent = styled.div`
@@ -331,6 +377,10 @@ const PricingRightContent = styled.div`
   flex-direction: row;
 
   padding-right: 200px;
+
+  @media (max-width: 1268px) {
+    padding-right: 0px;
+  }
 
   gap: 24px;
 `;
@@ -372,6 +422,9 @@ const ButtonBuy = styled.div`
   align-items: center;
   justify-content: center;
   min-width: 8.5rem;
+  @media (max-width: 1268px) {
+    min-width: 3.5rem;
+  }
   height: 2.5rem;
   padding: 0.75rem 2.5rem;
   font-size: 1rem;
@@ -395,6 +448,11 @@ const ButtonLearnMore = styled.div`
   align-items: center;
   justify-content: center;
   min-width: 8.5rem;
+
+  @media (max-width: 1268px) {
+    min-width: 3.5rem;
+  }
+
   height: 2.5rem;
   padding: 0.75rem 2.5rem;
   font-size: 1rem;

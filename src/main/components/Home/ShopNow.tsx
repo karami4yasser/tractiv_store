@@ -52,6 +52,10 @@ const Container = styled.div`
   gap: 21px;
   width: 100%;
   padding: 5rem 0;
+
+  @media (max-width: 1268px) {
+    border-radius: 0px;
+  }
 `;
 
 const ContainerContent = styled.div`
@@ -59,6 +63,12 @@ const ContainerContent = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 5rem;
   padding: 0 5rem;
+
+  @media (max-width: 1268px) {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+  }
 `;
 
 const CardItem = styled.div`
@@ -104,6 +114,11 @@ const ImageCard = styled.div`
   > div {
     position: absolute;
     bottom: 1.5rem;
+
+    @media (max-width: 1268px) {
+      bottom: 0.5rem;
+    }
+
     left: 0;
     right: 0;
     z-index: 3;
@@ -119,6 +134,10 @@ const ImageCardHeadline = styled.div`
   font-size: 2rem;
   color: #fff;
   text-align: center;
+
+  @media (max-width: 1268px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const ImageCardButton = styled.div`
@@ -129,11 +148,18 @@ const ImageCardButton = styled.div`
   align-items: center;
   justify-content: center;
   min-width: 7.5rem;
+
   height: 3rem;
+
   padding: 0.75rem 2.5rem;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.2;
+
+  @media (max-width: 1268px) {
+    min-width: fit-content;
+    height: 1rem;
+  }
 
   border: none;
   border-radius: 9999px;

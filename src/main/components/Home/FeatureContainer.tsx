@@ -113,6 +113,11 @@ const Container = styled.div`
   padding: 52px 96px;
   margin-top: 110px;
   border-radius: 32px;
+
+  @media (max-width: 1268px) {
+    padding: 52px 50px;
+    border-radius: 0px;
+  }
 `;
 
 const Overview = styled.div`
@@ -150,12 +155,20 @@ const Cards = styled.div`
   flex-direction: row;
   width: 100%;
   gap: 86px;
+
+  @media (max-width: 1268px) {
+    flex-direction: column;
+    padding: 0px 50px;
+  }
 `;
 
 const Card = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
+  @media (max-width: 1268px) {
+    flex-direction: column;
+  }
   gap: 0px;
   h1 {
     color: #121623;

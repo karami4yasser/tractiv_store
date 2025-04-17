@@ -85,15 +85,27 @@ export default Footer;
 const Wrapper = styled.div`
   padding: 2.5rem 1.5rem;
   margin: 24px;
+  @media (max-width: 1268px) {
+    margin: 0px;
+  }
   color: #fff;
   background: #121623;
   border-radius: 0.75rem;
+
+  @media (max-width: 1268px) {
+    border-radius: 0rem;
+  }
 `;
 
 const Container = styled.div`
   max-width: 1696px;
   margin: auto;
+
   padding: 4rem 10% 2rem;
+
+  @media (max-width: 1268px) {
+    margin: 0px;
+  }
 `;
 
 const ContainerLinks = styled.div`
@@ -102,6 +114,10 @@ const ContainerLinks = styled.div`
   margin-bottom: 4.75rem;
 
   gap: 4rem;
+
+  @media (max-width: 1268px) {
+    flex-direction: column;
+  }
 `;
 
 const AppsLinks = styled.div`
@@ -131,6 +147,12 @@ const Menu = styled.div`
   margin-top: 1.5rem;
   display: grid;
   grid-template-columns: repeat(3, 200px);
+
+  @media (max-width: 1268px) {
+    display: flex;
+    flex-direction: column;
+  }
+
   gap: 5%;
 `;
 
