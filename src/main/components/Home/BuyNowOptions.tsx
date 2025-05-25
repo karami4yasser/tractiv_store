@@ -137,6 +137,7 @@ function BuyNowOptions() {
                 <p
                   style={{
                     fontSize: "0.875rem",
+                    fontWeight: 550,
                     color: "#5c606e",
                     display: selectedColor == color ? "block" : "none",
                   }}
@@ -149,8 +150,30 @@ function BuyNowOptions() {
         </PricingRight>
       </PricingContainer>
       <BuyButtons>
-        <ButtonLearnMore>Learn More</ButtonLearnMore>
-        <ButtonBuy>Buy Now</ButtonBuy>
+        <a
+          style={{
+            margin: 0,
+            padding: 0,
+            width: "100%",
+            height: "100%",
+            textDecoration: "none",
+          }}
+          href={selectedType == "dog" ? "/gps-tracker-dog" : "/gps-tracker-cat"}
+        >
+          <ButtonLearnMore>Learn More</ButtonLearnMore>
+        </a>
+        <a
+          style={{
+            margin: 0,
+            padding: 0,
+            width: "100%",
+            height: "100%",
+            textDecoration: "none",
+          }}
+          href={selectedType == "dog" ? "/gps-tracker-dog" : "/gps-tracker-cat"}
+        >
+          <ButtonBuy>Buy Now</ButtonBuy>
+        </a>
       </BuyButtons>
     </Wrapper>
   );
@@ -241,11 +264,10 @@ const DeviceContainer = styled.div`
 
   margin-top: 48px;
   gap: 24px;
-
+  width: 100%;
   @media (max-width: 1268px) {
     flex-direction: column;
 
-    padding: 0 24px;
     align-items: center;
   }
 `;
@@ -398,6 +420,7 @@ const ColorOptionWrapper = styled.button<ColorOptionWrapperProps>`
   border-radius: 32px;
 
   border: ${({ color }) => color && `2px solid ${color}`};
+  cursor: pointer;
 `;
 
 const ColorOption = styled.button<ColorOptionWrapperProps>`
@@ -406,13 +429,14 @@ const ColorOption = styled.button<ColorOptionWrapperProps>`
   border-radius: 16px;
   background: ${({ color }) => color && `${color}`};
   border: none;
+  cursor: pointer;
 `;
 
 const BuyButtons = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 24px;
+  gap: 12px;
   margin-top: 50px;
 `;
 
@@ -424,6 +448,7 @@ const ButtonBuy = styled.div`
   min-width: 8.5rem;
   @media (max-width: 1268px) {
     min-width: 3.5rem;
+    width: 50%;
   }
   height: 2.5rem;
   padding: 0.75rem 2.5rem;
@@ -440,6 +465,7 @@ const ButtonBuy = styled.div`
     background: rgba(26, 115, 232, 0.9);
   }
   font-weight: 900;
+  white-space: nowrap;
 `;
 
 const ButtonLearnMore = styled.div`
@@ -448,9 +474,11 @@ const ButtonLearnMore = styled.div`
   align-items: center;
   justify-content: center;
   min-width: 8.5rem;
+  white-space: nowrap;
 
   @media (max-width: 1268px) {
     min-width: 3.5rem;
+    width: 50%;
   }
 
   height: 2.5rem;

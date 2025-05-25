@@ -5,7 +5,27 @@ import cardLeft from "../../../assets/cardLeft.png";
 import cardRight from "../../../assets/cardRight.png";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-function FeatureContainer() {
+import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { SvgIconTypeMap } from "@mui/material";
+
+type FeatureContainerProps = {
+  imagesData: ImagesData[];
+};
+export type ImagesData = {
+  image: string;
+  title: string;
+  subTitle: string;
+  featuresData: FeatureData[];
+  leftImage?: string;
+  rightImage?: string;
+};
+export type FeatureData = {
+  title: string;
+  Icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
+    muiName: string;
+  };
+};
+function FeatureContainer({ imagesData }: FeatureContainerProps) {
   return (
     <Container>
       <Overview>Overview</Overview>
@@ -13,23 +33,24 @@ function FeatureContainer() {
         Over 1 million pet owners trust Tractive
       </OverviewSubTitle>
       <Cards>
-        {[1, 2, 3].map((item) => (
-          <Card key={item}>
+        {imagesData.map((imageData, index) => (
+          <Card key={index}>
             <CardImage>
-              <img src={cardImage} alt="Dog in a field"></img>
+              <img src={imageData.image} alt="Dog in a field"></img>
               <div
                 style={{
                   position: "absolute",
                   top: "10%",
-                  left: "-30px",
+                  left: "-70px",
                 }}
               >
                 <img
                   style={{
-                    maxWidth: "100px",
                     height: "100px",
+                    width: "auto",
+                    objectFit: "contain",
                   }}
-                  src={cardLeft}
+                  src={imageData.leftImage ? imageData.leftImage : cardLeft}
                   alt="Dog in a field"
                 ></img>
               </div>
@@ -37,26 +58,24 @@ function FeatureContainer() {
               <div
                 style={{
                   position: "absolute",
-                  bottom: "10%",
-                  right: "-50px",
+                  bottom: "5%",
+                  right: "-70px",
                 }}
               >
                 <img
                   style={{
-                    maxWidth: "100px",
                     height: "100px",
+                    width: "auto",
+                    objectFit: "contain",
                   }}
-                  src={cardRight}
+                  src={imageData.rightImage ? imageData.rightImage : cardRight}
                   alt="Dog in a field"
                 ></img>
               </div>
             </CardImage>
             <>
-              <h1>Precise GPS Tracking</h1>
-              <h2>
-                Follow your pet's every step in real-time. Never lose track
-                thanks to reliable GPS technology.
-              </h2>
+              <h1>{imageData.title}</h1>
+              <h2>{imageData.subTitle}</h2>
             </>
             <div
               style={{
@@ -68,30 +87,31 @@ function FeatureContainer() {
                 marginTop: 0,
               }}
             >
-              <CardFeature>
-                <CardFeatureIcon>
-                  <NotificationsIcon
-                    style={{
-                      color: "#262626",
-                      width: "20px",
-                      height: "20px",
-                    }}
-                  />
-                </CardFeatureIcon>
-                <p>Live location</p>
-              </CardFeature>
-              <CardFeature>
-                <CardFeatureIcon>
-                  <NotificationsIcon
-                    style={{
-                      color: "#262626",
-                      width: "20px",
-                      height: "20px",
-                    }}
-                  />
-                </CardFeatureIcon>
-                <p>Virtual Fences with escape alerts</p>
-              </CardFeature>
+              {imageData.featuresData.map((featureData, index) => {
+                return (
+                  <CardFeature key={index}>
+                    <CardFeatureIcon>
+                      {/* <NotificationsIcon
+                        style={{
+                          color: "#262626",
+                          width: "20px",
+                          height: "20px",
+                        }}
+                      /> */}
+                      {
+                        <featureData.Icon
+                          style={{
+                            color: "#262626",
+                            width: "20px",
+                            height: "20px",
+                          }}
+                        />
+                      }
+                    </CardFeatureIcon>
+                    <p>{featureData.title}</p>
+                  </CardFeature>
+                );
+              })}
             </div>
           </Card>
         ))}
@@ -111,12 +131,11 @@ const Container = styled.div`
   background-color: #fcf8f3;
 
   padding: 52px 96px;
-  margin-top: 110px;
   border-radius: 32px;
 
   @media (max-width: 1268px) {
-    padding: 52px 50px;
     border-radius: 0px;
+    padding: 24px 70px;
   }
 `;
 
@@ -158,7 +177,7 @@ const Cards = styled.div`
 
   @media (max-width: 1268px) {
     flex-direction: column;
-    padding: 0px 50px;
+    padding: 0px 0px;
   }
 `;
 
@@ -205,6 +224,15 @@ const CardImage = styled.div`
   }
   position: relative;
 `;
+
+
+const CardImageSides = styled.img`
+  height: 60px;
+  width: auto;
+  aspect-ratio: 1.6;
+  object-fit: cover;
+`;
+
 const CardFeature = styled.div`
   display: flex;
   flex-direction: row;

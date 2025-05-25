@@ -235,8 +235,9 @@ const NormalVideoContainer = styled.div`
   bottom: -250px;
 
   @media (max-width: 1268px) {
-    bottom: 0px;
+    bottom: 120px;
     border-radius: 0px;
+    background: red;
   }
 `;
 

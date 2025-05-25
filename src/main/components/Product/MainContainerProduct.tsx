@@ -8,11 +8,23 @@ import device1 from "../../../assets/product_slider/device1.png";
 import stars5 from "../../../assets/stars5.png";
 import check from "../../../assets/check-mark.svg";
 
+
+import dog1 from "../../../assets/product_slider/dog1.png";
+import dog2 from "../../../assets/product_slider/dog2.png";
+import dog3 from "../../../assets/product_slider/dog3.png";
+
 import product1 from "../../../assets/product/product1.png";
 type SelectedType = "dog" | "cat";
 type SelectedColorType = "black" | "blue" | "gray";
-function MainContainerProduct() {
-  const images = [cat1, device1, cat2];
+
+type MainContainerProductProps = {
+  type: "dog" | "cat";
+};
+
+function MainContainerProduct({ type }: MainContainerProductProps) {
+  const imagescat = [cat1, device1, cat2];
+  const imagesDog = [dog1, dog2, dog3];
+  const images = type == "dog" ? imagesDog : imagescat;
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrev = () => {
@@ -27,6 +39,18 @@ function MainContainerProduct() {
 
   const [selectedColor, setSelectedColor] =
     useState<SelectedColorType>("black");
+
+  const catProductData = {
+    title: "GPS & Health Tracker for Cats",
+    trackerName: "Tractive CAT Mini",
+  };
+
+  const dogProductData = {
+    title: "GPS & Health Tracker for Dogs",
+    trackerName: "Tractive Dog Mini",
+  };
+
+  const selectedProductData = type == "dog" ? dogProductData : catProductData;
 
   return (
     <Container>
@@ -54,7 +78,7 @@ function MainContainerProduct() {
         <ProductHeroRight>
           <ProductInfoHeader>
             <h3>Rated “Excellent” on TrustPilot</h3>{" "}
-            <h1>GPS &amp; Health Tracker for Cats</h1>{" "}
+            <h1>{selectedProductData.title}</h1>{" "}
           </ProductInfoHeader>
 
           <ReviewSectionHeader>
@@ -120,7 +144,7 @@ function MainContainerProduct() {
                     ></img>
                   </ProductCardHeaderLeft>
                   <ProductCardHeaderRight>
-                    <h2>Tractive CAT Mini</h2>
+                    <h2>{selectedProductData.trackerName}</h2>
                     <ProductCardHeaderRightSubTitle>
                       <svg
                         width="18"
@@ -243,7 +267,7 @@ const ProductHero = styled.div`
 const ProductHeroLeft = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: fit-content;
 `;
 
 const CarouselWrapper = styled.div`
@@ -330,7 +354,6 @@ const ChevronRight = styled.div`
 const ProductHeroRight = styled.div`
   padding: 0 1rem;
 `;
-
 const ProductInfoHeader = styled.div`
   display: flex;
   flex-direction: column;
@@ -689,3 +712,4 @@ const BuyNow = styled.button`
     color: #fff;
   }
 `;
+

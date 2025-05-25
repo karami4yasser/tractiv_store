@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -9,7 +9,21 @@ import Test3 from "../../../assets/Test3.png";
 import Test4 from "../../../assets/Test4.png";
 import device1 from "../../../assets/device1.png";
 import device2 from "../../../assets/device2.png";
+
 function Testimonials() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: string) => {
+    if (!scrollRef.current) return;
+
+    const scrollAmount = 550; // adjust as needed
+
+    if (direction === "left") {
+      scrollRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    } else {
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
   return (
     <Wrapper>
       <div
@@ -24,31 +38,69 @@ function Testimonials() {
           <TopSectionInside style={{}}>
             <Title>What pet parents have to say</Title>
             <CarouselControles>
-              <CarouselControle>
-                <ChevronLeftIcon
-                  style={{
-                    color: "#262626",
-                    width: "64px",
-                    height: "64px",
-                  }}
-                />
+              <CarouselControle onClick={() => scroll("left")}>
+                <svg
+                  width="41"
+                  height="40"
+                  viewBox="0 0 41 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  {" "}
+                  <title>Previous</title>{" "}
+                  <path
+                    d="M28.5 20.666L13.8333 20.666"
+                    stroke="#262626"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>{" "}
+                  <path
+                    d="M21.166 28L13.8327 20.6667L21.166 13.3333"
+                    stroke="#262626"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>{" "}
+                </svg>
               </CarouselControle>
 
-              <CarouselControle>
-                <ChevronRightIcon
-                  style={{
-                    color: "#262626",
-                    width: "64px",
-                    height: "64px",
-                  }}
-                />
+              <CarouselControle onClick={() => scroll("right")}>
+                <svg
+                  width="41"
+                  height="40"
+                  viewBox="0 0 41 40"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  {" "}
+                  <title>Next</title>{" "}
+                  <path
+                    d="M12.5 20.666L27.1667 20.666"
+                    stroke="#262626"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>{" "}
+                  <path
+                    d="M19.834 28L27.1673 20.6667L19.834 13.3333"
+                    stroke="#262626"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>{" "}
+                </svg>
               </CarouselControle>
             </CarouselControles>
           </TopSectionInside>
         </TopSection>
 
-        <ScrollWrapper>
+        <ScrollWrapper ref={scrollRef}>
           {[
+            { image: Test1, deviceImage: device1 },
+            { image: Test2, deviceImage: device1 },
+            { image: Test3, deviceImage: device1 },
+            { image: Test4, deviceImage: device1 },
             { image: Test1, deviceImage: device1 },
             { image: Test2, deviceImage: device1 },
             { image: Test3, deviceImage: device1 },
@@ -102,15 +154,13 @@ const TopSection = styled.div`
 const TopSectionInside = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 0 7.5rem;
 
   width: "100%";
-
-  gap: "35%";
 
   @media (max-width: 1268px) {
     padding: 0 0.5rem;
     flex-direction: column;
+    gap: 24px;
   }
 `;
 
@@ -122,12 +172,19 @@ const Title = styled.div`
   @media (max-width: 1268px) {
     font-size: 1.5rem;
   }
+  flex: 1;
 `;
 
 const CarouselControles = styled.div`
   display: flex;
   flex-direction: row;
   gap: 8px;
+  @media (max-width: 1268px) {
+    gap: 1px;
+    display: none;
+  }
+
+  justify-content: flex-end;
 `;
 const CarouselControle = styled.button`
   border: none;

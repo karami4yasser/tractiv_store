@@ -6,37 +6,56 @@ function ShopNow() {
   return (
     <Container>
       <ContainerContent>
-        <CardItem>
-          <ImageCard>
-            <img src={dog} alt="Dog in a field"></img>
-            <div
-              style={{
-                zIndex: 10,
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <ImageCardHeadline>Dog Tracker</ImageCardHeadline>
-              <ImageCardButton>Shop Now</ImageCardButton>
-            </div>
-          </ImageCard>
-        </CardItem>
-        <CardItem>
-          <ImageCard>
-            {" "}
-            <img src={cat} alt="Dog in a field"></img>
-            <div
-              style={{
-                zIndex: 10,
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <ImageCardHeadline>Cat Tracker</ImageCardHeadline>
-              <ImageCardButton>Shop Now</ImageCardButton>
-            </div>
-          </ImageCard>
-        </CardItem>
+        <a
+          style={{
+            margin: 0,
+            padding: 0,
+            width: "100%",
+            height: "100%",
+          }}
+          href="/gps-tracker-dog"
+        >
+          <CardItem>
+            <ImageCard>
+              <img src={dog} alt="Dog in a field"></img>
+              <div
+                style={{
+                  zIndex: 10,
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <ImageCardHeadline>Dog Tracker</ImageCardHeadline>
+                <ImageCardButton>Shop Now</ImageCardButton>
+              </div>
+            </ImageCard>
+          </CardItem>
+        </a>
+        <a
+          style={{
+            margin: 0,
+            padding: 0,
+            width: "100%",
+            height: "100%",
+          }}
+          href="/gps-tracker-cat"
+        >
+          <CardItem>
+            <ImageCard>
+              <img src={cat} alt="Cat in a field"></img>
+              <div
+                style={{
+                  zIndex: 10,
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <ImageCardHeadline>Cat Tracker</ImageCardHeadline>
+                <ImageCardButton>Shop Now</ImageCardButton>
+              </div>
+            </ImageCard>
+          </CardItem>
+        </a>
       </ContainerContent>
     </Container>
   );
